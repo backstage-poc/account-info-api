@@ -8,6 +8,6 @@ metadata:
 spec:
   type: openapi
   lifecycle: production
-  owner: transactions-team
+  owner: accounts-team
   definition:
     $text: ./account-info-spec.json
