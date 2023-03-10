@@ -9,5 +9,6 @@ spec:
   type: openapi
   lifecycle: production
   owner: accounts-team
+  system: Accounts  
   definition:
     $text: ./account-info-spec.json
