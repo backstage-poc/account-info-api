@@ -1,32 +1,13 @@
 extends: spectral:oas
 
 rules:
-
-- id: oas3-api-servers
-  description: OpenAPI servers must be present and non-empty array.
-  severity: error
-  given:
-    - $.servers
-  then:
-    - type: is_array
-    - value: true
-    - message: "The OpenAPI servers must be present and non-empty array."
-
-- id: oas3-paths-must-be-kebab-case
-  description: All paths must be in kebab-case.
-  severity: warning
-  given:
-    - $.paths
-  then:
-    - type: all_paths_are_kebab_case
-    - message: "All paths must be in kebab-case."
-
-- id: oas3-responses-must-have-description
-  description: All responses must have a description.
-  severity: warning
-  given:
-    - $.responses
-  then:
-    - type: all_responses_have_description
-    - message: "All responses must have a description."
+  paths-kebab-case:
+    description: Paths should be kebab-case.
+    message: "{{property}} should be kebab-case (lower-case and separated with hyphens)"
+    severity: warn
+    given: $.paths[*]~
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(\/|[a-z0-9-.]+|{[a-zA-Z0-9_]+})+$"
 
